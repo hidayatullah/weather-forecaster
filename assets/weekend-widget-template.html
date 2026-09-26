@@ -1,0 +1,27 @@
+<style>
+.wx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.col{background:var(--surface-1);border-radius:var(--radius);padding:12px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.col.now{background:var(--surface-2);border:2px solid var(--border-accent)}
+.t{font-size:13px;color:var(--text-secondary)}
+.tag{font-size:11px;color:var(--text-muted)}
+.ic{font-size:30px;color:var(--text-primary)}
+.temp{font-size:22px;font-weight:500}
+.wind{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.gust{font-size:11px;color:var(--text-muted)}
+.al{color:var(--text-danger)}
+@media (max-width:520px){.wx{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<h2 class="sr-only">{{SR_SUMMARY}}</h2>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 12px">
+<span style="font-size:16px;font-weight:500">{{LOCATION}}</span>
+<span style="font-size:13px;color:var(--text-secondary)">Weekend · {{DATES}}</span>
+</div>
+{{BANNER}}
+<div class="wx">
+{{FRI_NIGHT}}
+{{SAT}}
+{{SAT_NIGHT}}
+{{SUN}}
+{{SUN_NIGHT}}
+</div>
+<p style="font-size:12px;color:var(--text-muted);margin:12px 0 0">{{CAPTION}} <a href="{{SOURCE_URL}}">View on weather.gov</a></p>

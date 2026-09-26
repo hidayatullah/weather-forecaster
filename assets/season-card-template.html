@@ -1,0 +1,48 @@
+<style>
+.card{background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sub{font-size:13px;color:var(--text-secondary)}
+.hl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.hb{display:flex;align-items:center;gap:12px}
+.big{font-size:48px;font-weight:500;line-height:1}
+.lab{font-size:14px;color:var(--text-secondary)}
+.mets{display:grid;grid-template-columns:repeat({{METRIC_COUNT}},minmax(0,1fr));gap:12px;margin:20px 0 16px}
+.met{background:var(--surface-1);border-radius:var(--radius);padding:10px 14px}
+.ml{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:5px}
+.mv{font-size:18px;font-weight:500}
+.tc{display:flex;flex-direction:column;gap:8px;margin:0 0 16px}
+.ti-row{display:flex;gap:10px;align-items:flex-start;border-radius:var(--radius);padding:9px 12px;font-size:13px;line-height:1.5}
+.silver{background:var(--surface-1);border:0.5px solid var(--border-strong);color:var(--text-secondary)}
+.silver .h{color:var(--text-primary)}
+.watch{background:var(--bg-warning);color:var(--text-warning)}
+.warn{background:var(--bg-danger);color:var(--text-danger)}
+.per{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;border-top:0.5px solid var(--border);padding-top:16px}
+.pl{font-size:14px;color:var(--text-secondary)}
+.pv{font-size:24px;font-weight:500;margin:2px 0}
+.pd{font-size:14px;color:var(--text-primary)}
+.badge{display:inline-flex;align-items:center;gap:4px;background:var(--surface-1);border:0.5px solid var(--border-strong);color:var(--text-secondary);font-size:12px;padding:2px 10px;border-radius:var(--radius)}
+@media (max-width:520px){.hl,.per{grid-template-columns:1fr}.big{font-size:40px}.mets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<h2 class="sr-only">{{SR_SUMMARY}}</h2>
+<div style="display:flex;align-items:center;gap:8px;background:var(--surface-1);border:0.5px solid var(--border);border-radius:var(--radius);padding:8px 12px;margin:0 0 12px;font-size:13px;color:var(--text-secondary)">
+<i class="ti ti-history" style="font-size:18px" aria-hidden="true"></i>
+<span><span style="font-weight:500;color:var(--text-primary)">Typical weather, not a forecast.</span> Too far out to forecast yet. These are 30-year averages and records.</span>
+</div>
+<div class="card">
+<div class="row"><span style="font-size:18px;font-weight:500">{{LOCATION}}</span>{{DATE_LABEL}}</div>
+<div class="sub" style="margin-top:4px">{{SEASON_LABEL}}</div>
+<div class="hl">
+<div class="hb"><i class="ti ti-temperature-plus" style="font-size:32px;color:#D85A30" aria-hidden="true"></i><div><div class="lab">Typical high</div><div class="big">{{TYPICAL_HIGH}}</div></div></div>
+<div class="hb"><i class="ti ti-temperature-minus" style="font-size:32px;color:#1D9E75" aria-hidden="true"></i><div><div class="lab">Typical low</div><div class="big">{{TYPICAL_LOW}}</div></div></div>
+</div>
+<div class="mets">
+{{METRICS}}
+</div>
+{{TYPICAL_CONDITIONS}}
+<div class="per">
+<div><div class="pl">Warmest on record</div><div class="pv">{{RECORD_HIGH}}</div><div class="pd">{{RECORD_HIGH_DATES}}</div></div>
+<div><div class="pl">Coolest on record</div><div class="pv">{{RECORD_LOW}}</div><div class="pd">{{RECORD_LOW_DATES}}</div></div>
+</div>
+{{EXTREME_LINE}}
+</div>
+<p style="font-size:12px;color:var(--text-muted);margin:12px 0 0">{{CAPTION}} <a href="{{SOURCE_URL}}">{{SOURCE_LINK_TEXT}}</a></p>

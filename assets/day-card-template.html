@@ -1,0 +1,33 @@
+<style>
+.card{background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem}
+.row{display:flex;justify-content:space-between;align-items:baseline}
+.sub{font-size:13px;color:var(--text-secondary)}
+.big{font-size:56px;font-weight:500;line-height:1}
+.mets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.met{background:var(--surface-1);border-radius:var(--radius);padding:10px 14px}
+.ml{font-size:13px;color:var(--text-secondary)}
+.mv{font-size:18px;font-weight:500;display:flex;align-items:center;gap:4px}
+.per{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;border-top:0.5px solid var(--border);padding-top:16px}
+.pl{font-size:14px;color:var(--text-secondary)}
+.pv{font-size:24px;font-weight:500;margin:2px 0}
+.pd{font-size:14px;color:var(--text-primary);display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.ar{font-size:15px}
+.al{color:var(--text-danger)}
+@media (max-width:520px){.mets{grid-template-columns:repeat(2,minmax(0,1fr))}.per{grid-template-columns:1fr}}
+</style>
+<h2 class="sr-only">{{SR_SUMMARY}}</h2>
+{{BANNER}}
+<div class="card">
+<div class="row"><span style="font-size:18px;font-weight:500">{{LOCATION}}</span><span class="sub">{{CORNER}}</span></div>
+{{CURRENT}}
+<div class="mets">
+<div class="met"><div class="ml">Humidity</div><div class="mv">{{HUMIDITY}}</div></div>
+<div class="met"><div class="ml">Dew point</div><div class="mv">{{DEWPOINT}}</div></div>
+<div class="met"><div class="ml">Wind</div><div class="mv">{{WIND}}</div></div>
+</div>
+<div class="per">
+{{PERIOD_1}}
+{{PERIOD_2}}
+</div>
+</div>
+<p style="font-size:12px;color:var(--text-muted);margin:12px 0 0">{{CAPTION}} <a href="{{SOURCE_URL}}">View on weather.gov</a></p>
