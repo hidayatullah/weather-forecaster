@@ -4,7 +4,7 @@ When a date is beyond the forecast range, there is no forecast to show, and the 
 
 The season card is a single card (like the day card) that summarizes a day, weekend, long weekend, or week. It must look the same every time. Build it only from `assets/season-card-template.html` and the snippets below. Every number must come from an official source retrieved in the current conversation. Never estimate a normal you couldn't retrieve.
 
-The design was approved from live Round Rock, TX examples (the Indigenous Peoples' Day long weekend, October 9–12, and a regular weekend, October 16–18, 2026).
+The design was approved from live examples (a holiday long weekend and a regular weekend, both beyond the forecast range).
 
 ## When to use it
 
@@ -13,18 +13,18 @@ The design was approved from live Round Rock, TX examples (the Indigenous People
 
 ## Data sources (in order of preference)
 
-1. **The local NWS office's monthly climate table** for its official station, which gives normal high, low, and precipitation for each day, plus records and years. Example: NWS Austin/San Antonio's Camp Mabry October table, https://www.weather.gov/media/ewx/climate/ATTOctober.pdf. Find it by searching for the office and station name with the month (e.g. "NWS Austin Camp Mabry October normals"), and check that the station is the right one. Not every office publishes these tables.
+1. **The local NWS office's monthly climate table** for its official station, which gives normal high, low, and precipitation for each day, plus records and years. Some NWS offices publish these as monthly PDF tables on their climate pages. Find one by searching for the office and station name with the month (e.g. "NWS [office] [station] October normals"), and check that the station is the right one. Not every office publishes these tables.
 2. **NWS NOWData** (the Climate section of each office's page) or **NCEI U.S. Climate Normals** (1991–2020) for daily normals.
-3. **The NWS office's climate summary** (e.g. "Austin Climate Summary") for typical conditions: prevailing winds, wet and dry months, fog and low clouds, severe weather season, flooding, tropical, snow, and ice risks.
+3. **The NWS office's climate summary** (e.g. "[City] Climate Summary") for typical conditions: prevailing winds, wet and dry months, fog and low clouds, severe weather season, flooding, tropical, snow, and ice risks.
 4. **The CPC 8–14 day and week 3–4 outlooks** for any part of the range they cover. Mention these in the reply text, not on the card.
 
-Always name the station and its distance from the place when they differ (for example, "Camp Mabry, about 17 miles south of Round Rock").
+Always name the station and roughly how far it is from the place when they differ (for example, "the city's main airport station, about 10 miles away").
 
 ## Placeholders
 
 | Placeholder | Fill with |
 |---|---|
-| `{{SR_SUMMARY}}` | "Typical weather, not a forecast: 1991 to 2020 averages and records for Austin Camp Mabry, near Round Rock, TX, for the weekend of October 16 to 18, 2026, with typical conditions for mid-October." |
+| `{{SR_SUMMARY}}` | "Typical weather, not a forecast: 1991 to 2020 averages and records for [station], [City], [ST], for the weekend of October 16 to 18, 2026, with typical conditions for mid-October." |
 | `{{LOCATION}}` | "City, ST" for US places. |
 | `{{DATE_LABEL}}` | Regular dates: `<span class="sub">Weekend · Oct 16–18</span>` (or "Oct 16", "Week · Oct 12–18"). Long weekend: `<span class="badge"><i class="ti ti-calendar-star" style="font-size:15px" aria-hidden="true"></i>Long weekend · Oct 9–12</span>`. |
 | `{{SEASON_LABEL}}` | Early, mid-, or late plus the month: "Mid-October season" (days 1–10 early, 11–20 mid, 21–end late; for ranges, use the middle date). |
@@ -35,7 +35,7 @@ Always name the station and its distance from the place when they differ (for ex
 | `{{RECORD_HIGH}}`, `{{RECORD_HIGH_DATES}}` | The highest record high across the dates, e.g. "95°", and the date(s) and year(s): "Oct 17, 1993". Separate several with " · ". |
 | `{{RECORD_LOW}}`, `{{RECORD_LOW_DATES}}` | The same for the lowest record low. |
 | `{{EXTREME_LINE}}` | `<div class="sub" style="margin-top:14px">Wettest day on record for these dates: 6.24 in on Oct 17, 1998</div>`, or the snowiest day in snow season. Empty if not available. |
-| `{{CAPTION}}` | The sources, e.g. "NWS Austin/San Antonio: Austin Camp Mabry October climate table (1991–2020 normals and records) and Austin Climate Summary." |
+| `{{CAPTION}}` | The sources, e.g. "NWS [office]: [station] October climate table (1991–2020 normals and records) and [City] Climate Summary." |
 | `{{SOURCE_URL}}`, `{{SOURCE_LINK_TEXT}}` | The main source's URL, with link text such as "View the climate table". |
 
 ## Metric boxes
@@ -66,7 +66,7 @@ Add a section for conditions the official climate sources describe as typical fo
 
 Each row uses one of three levels. **Only watch-level and warning-level hazards get color.** Everything else, including advisory-level conditions and general weather, is silver.
 
-- **Warning level (red):** dangerous conditions that are typical for the season, such as flash flooding in Flash Flood Alley in fall, snowstorms or blizzards in a snowy winter, hurricane season on the coast, or extreme heat.
+- **Warning level (red):** dangerous conditions that are typical for the season, such as flash flooding in a flood-prone region during its wet season, snowstorms or blizzards in a snowy winter, hurricane season on the coast, or extreme heat.
   ```html
   <div class="ti-row warn"><i class="ti ti-alert-octagon" style="font-size:18px;margin-top:1px" aria-hidden="true"></i><div><div style="font-size:14px;font-weight:500">{{TITLE}}</div><div>{{TEXT}}</div></div></div>
   ```

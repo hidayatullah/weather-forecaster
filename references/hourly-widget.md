@@ -2,32 +2,32 @@
 
 The hourly widget must look the same every time. Build it only from the fixed template in `assets/hourly-widget-template.html` and the exact snippets below. Fill in the data; do not change the layout, styling, class names, colors, icon set, or wording patterns, and do not add or remove elements beyond what these rules allow. Every number must come from data retrieved in the current conversation.
 
-The template was approved from three real examples: a quiet day in Bozeman, MT; a hurricane watch in Hilo, HI; and coastal flood and high wind warnings in Point Pleasant Beach, NJ.
+The template was approved from three real examples: a quiet day, a hurricane watch, and coastal flood and high wind warnings.
 
 ## How to build it
 
 1. Read `assets/hourly-widget-template.html`.
 2. Replace every `{{PLACEHOLDER}}` using the rules below.
-3. Render the result with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `bozeman_hourly_weather`). Pass the filled-in template exactly as it is.
+3. Render the result with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `city_hourly_weather`). Pass the filled-in template exactly as it is.
 
-The widget is only for one place and one day. The weekend uses the weekend widget (see `weekend-widget.md`), the work week and next 7 days use the week widgets (see `week-widget.md`), and long weekends use the bullet list described in SKILL.md. For the overall picture of a day, use the day card instead (see `day-card.md`); SKILL.md explains how to choose.
+The widget is only for one place and one day. The weekend uses the weekend widget (see `weekend-widget.md`), the work week and next 7 days use the week widgets (see `week-widget.md`), long weekends use the long-weekend widget (see `long-weekend-widget.md`), and any date beyond the forecast range uses the season card (see `season-card.md`). For the overall picture of a day, use the day card instead (see `day-card.md`); SKILL.md explains how to choose.
 
 ## Placeholders
 
 | Placeholder | Fill with |
 |---|---|
-| `{{SR_SUMMARY}}` | One sentence for screen readers: "Hourly weather for Hilo, HI, from 7 AM to noon HST on Saturday, September 26, 2026, with an active hurricane watch, from National Weather Service data." Leave out the alert clause if there are no alerts. |
-| `{{LOCATION}}` | "City, ST" for US places (e.g. "Point Pleasant Beach, NJ"). Never the full state name. |
+| `{{SR_SUMMARY}}` | One sentence for screen readers: "Hourly weather for [City], [ST], from 7 AM to noon HST on Saturday, September 26, 2026, with an active hurricane watch, from National Weather Service data." Leave out the alert clause if there are no alerts. |
+| `{{LOCATION}}` | "City, ST" for US places (e.g. "[City], [ST]"). Never the full state name. |
 | `{{DATE}}` | Short weekday and date: "Sat, Sep 26". |
 | `{{HIGH}}` | Today's forecast high, number only. |
 | `{{BANNER}}` | One of the banner snippets below, or an empty string if there are no watches or warnings. |
 | `{{COLUMN_1}}` to `{{COLUMN_6}}` | The hour before, now, then the next four hours, each built from a column snippet below. |
-| `{{CAPTION}}` | Sources and issue time, e.g. "1 PM: KBLM observation. 2–6 PM: NWS Mount Holly forecast, issued 4:12 AM EDT." Nothing else. There is no arrow legend. |
+| `{{CAPTION}}` | Sources and issue time, e.g. "1 PM: [station] observation. 2–6 PM: NWS [office] forecast, issued 4:12 AM EDT." Nothing else. There is no arrow legend. |
 | `{{SOURCE_URL}}` | The weather.gov point forecast page for the location. |
 
 ## Column snippets
 
-Every column uses one of these shapes. Add the rain and gust lines (marked "alert lines") only when a watch or warning banner is shown. When one column has them, every column that has the data has them too.
+Every column uses one of these shapes. The rain and gust lines (marked "alert lines" below) follow these rules: add the rain line when any column's chance of rain is 20% or more, and add the gust line when any column reports gusts or a watch or warning banner is shown. When one column has a line, every column that has the data has it too.
 
 **Forecast hour:**
 ```html

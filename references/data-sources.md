@@ -44,7 +44,7 @@ Human-readable equivalents: `https://forecast.weather.gov/MapClick.php?lat={lat}
 
 ## 3. Climate normals and seasonal context
 
-Use these for "too far out to forecast" questions, such as what March in Austin is usually like.
+Use these for "too far out to forecast" questions, such as what March in a given city is usually like.
 
 - **NWS NOWData** (daily and monthly climate data and normals by forecast office): reachable from each office's "Climate" section on weather.gov.
 - **NOAA NCEI U.S. Climate Normals (1991–2020):** https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals

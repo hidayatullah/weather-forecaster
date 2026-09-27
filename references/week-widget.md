@@ -7,13 +7,13 @@ Two widgets share one template, `assets/week-widget-template.html`, with one col
 
 Both must look the same every time. Build them only from the template and the exact snippets below. Fill in the data; don't change the layout, styling, class names, colors, icons, or wording patterns, and don't add or remove elements beyond what these rules allow. Every number must come from data retrieved in the current conversation.
 
-The design was approved from a live Round Rock, TX example.
+The design was approved from a live example.
 
 ## How to build it
 
 1. Read `assets/week-widget-template.html`.
 2. Replace every `{{PLACEHOLDER}}` using the rules below.
-3. Render it with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `round_rock_work_week_widget` or `round_rock_seven_day_widget`), passing the filled-in template exactly as it is.
+3. Render it with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `city_work_week_widget` or `city_seven_day_widget`), passing the filled-in template exactly as it is.
 
 ## Which days
 
@@ -32,13 +32,13 @@ The NWS 7-day forecast periods on the point forecast page (or `FcstType=dwml`). 
 | Placeholder | Fill with |
 |---|---|
 | `{{COLUMN_COUNT}}` | `5` for the work week, `7` for 7 days. |
-| `{{SR_SUMMARY}}` | "Work week forecast for Round Rock, TX, Monday September 28 through Friday October 2, 2026, from National Weather Service data." or "Seven-day forecast for ...". Add the alert clause when a banner is shown. |
+| `{{SR_SUMMARY}}` | "Work week forecast for [City], [ST], Monday September 28 through Friday October 2, 2026, from National Weather Service data." or "Seven-day forecast for ...". Add the alert clause when a banner is shown. |
 | `{{LOCATION}}` | "City, ST" for US places. |
 | `{{RANGE_LABEL}}` | "Work week" or "7 days". |
 | `{{DATES}}` | First through last date shown: "Sep 28–Oct 2". |
 | `{{BANNER}}` | A banner snippet from `hourly-widget.md` ("Banner snippets"): red for warnings, amber for watches, silver for advisories. Empty string if there are no alerts. |
 | `{{DAY_COLUMNS}}` | Five or seven day-column snippets, in order. |
-| `{{CAPTION}}` | "NWS Austin/San Antonio forecast, issued 1:24 PM CDT." |
+| `{{CAPTION}}` | "NWS [office] forecast, issued 1:24 PM CDT." |
 | `{{SOURCE_URL}}` | The weather.gov point forecast page. |
 
 ## Day column snippets

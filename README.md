@@ -1,63 +1,100 @@
 # Weather Forecaster
 
-An agent skill that turns an AI assistant into a truthful, curious weather forecaster. It presents forecasts with consistent visual widgets, communicates watches and warnings, and discusses weather science, climate patterns, history, and folklore.
+**Version 0.0.1**
 
-The skill is triggered whenever weather comes up: direct questions ("will it rain Saturday?"), passing mentions ("it's been so hot lately"), and indirect hints where weather matters (travel, fishing, hiking, driving, outdoor events).
+A Claude skill that turns Claude into a truthful, curious weather forecaster. It presents forecasts as consistent visual widgets, explains the science behind the weather, communicates watches and warnings clearly, and talks about seasons, climate patterns, weather history, and traditional forecasting.
 
-## Core principle: truthfulness
+It works in one-on-one chats and group channels. It answers direct questions right away, and politely offers the forecast when weather comes up in passing.
 
-- Every number, alert, and forecast must come from a source retrieved in the current conversation.
-- Sources and issue times are always named.
-- "I don't know" is an acceptable answer when data isn't available.
-- Personal interpretation is clearly labeled as such.
-- Made-up data is allowed only in explicitly requested demos, and must carry the sample-data markers described in [`references/sample-data.md`](references/sample-data.md).
+## Principles
 
-## Repository layout
+- **Truthful above all.** Every number comes from an official source retrieved during the conversation. The forecaster never makes data up, never shades a forecast to please anyone, and says "I don't know" when it doesn't know.
+- **Official, free sources only.** It uses the National Weather Service and NOAA in the US, and national meteorological services elsewhere. It never uses commercial weather APIs.
+- **Report first, interpret second.** Any judgment of its own is clearly labeled, and comes with a reminder that conditions can change fast.
+- **Made-up data only in explicit demos.** Sample data is allowed only when someone explicitly asks for a demo. It's always marked with a red "Sample data" ribbon, a "Not a forecast" caption, and a screen-reader note.
+- **Color means danger.** Only watches (amber) and warnings (red) get color. Advisories and general notes are silver.
 
-```
-SKILL.md                 Entry point: persona, behavior rules, widget selection
-assets/                  Fixed HTML templates for each widget
-references/              Specifications, data sources, and icon rules
-```
+## Widgets
 
-### Widgets
+Every widget is built from a fixed HTML template, so it looks the same every time.
 
-Each widget is built only from its template, filled in according to its spec. Templates must not be restyled, merged, or extended.
+| Widget | When it's used |
+|---|---|
+| **Day card** | "What's the weather?" or "What's it like right now?": current conditions, humidity, dew point, and wind, plus the next two forecast periods |
+| **Hourly widget** | "What's the weather going to be like?" or "When will the rain start?": the hour before, now, and the next four hours |
+| **Weekend widget** | The weekend: Friday night through Sunday night |
+| **Long-weekend widget** | Holiday weekends (detected from the public holiday calendar) or a personal day off, with the days off marked |
+| **Work-week widget** | "This week," or Monday through Friday |
+| **7-day widget** | "The week ahead," or the next 7 days |
+| **Season card** | Any date beyond the forecast range: the 30-year averages (1991–2020 normals), records, and typical conditions for those dates |
 
-| Widget | Used for | Template | Spec |
-|---|---|---|---|
-| Day card | The overall picture: current conditions plus the next two periods | [`assets/day-card-template.html`](assets/day-card-template.html) | [`references/day-card.md`](references/day-card.md) |
-| Hourly widget | Hour-by-hour breakdown (six columns) | [`assets/hourly-widget-template.html`](assets/hourly-widget-template.html) | [`references/hourly-widget.md`](references/hourly-widget.md) |
-| Weekend widget | Friday night through Sunday night (five periods) | [`assets/weekend-widget-template.html`](assets/weekend-widget-template.html) | [`references/weekend-widget.md`](references/weekend-widget.md) |
-| Long-weekend widget | Holiday or extra day off (seven or nine periods) | [`assets/long-weekend-widget-template.html`](assets/long-weekend-widget-template.html) | [`references/long-weekend-widget.md`](references/long-weekend-widget.md) |
-| Week widget | Work week (Mon–Fri) or the next 7 days | [`assets/week-widget-template.html`](assets/week-widget-template.html) | [`references/week-widget.md`](references/week-widget.md) |
-| Season card | Dates beyond the forecast range: 1991–2020 normals and records | [`assets/season-card-template.html`](assets/season-card-template.html) | [`references/season-card.md`](references/season-card.md) |
+Weather enthusiasts can also get one data chart after the widget, showing wind, precipitation, or temperature and dew point.
 
-### Shared references
-
-- [`references/data-sources.md`](references/data-sources.md): free, official data sources only (NWS API, NOAA centers, NCEI climate normals, international meteorological services, holiday calendars), plus tips for checking that data is fresh.
-- [`references/icons.md`](references/icons.md): the Tabler outline icon and color for every condition. Color is reserved for hazards: red for warnings, amber for watches, silver for advisories.
-- [`references/sample-data.md`](references/sample-data.md): the rules for demo widgets with made-up data.
-
-## How an answer is shaped
-
-A typical answer to "what's the weather?" has four parts:
-
-1. The appropriate widget, with an alert banner above it if a watch or warning is active.
-2. A few short bullets covering what the widget can't show at a glance.
-3. One short paragraph on what the day will feel like.
-4. A follow-up offering more detail, something interesting about the weather, or a longer look ahead.
-
-## Data sources
-
-Only free, official sources are used. No commercial weather APIs.
-
-- **United States:** National Weather Service ([weather.gov](https://www.weather.gov), [api.weather.gov](https://api.weather.gov)) and other NOAA services.
-- **Elsewhere:** the country's official national meteorological service, or the [WMO World Weather Information Service](https://worldweather.wmo.int).
+Each answer follows the same short format: the widget, a few bullets, one paragraph, and a follow-up question offering more detail, something interesting about today's weather, or a longer look ahead.
 
 ## Installation
 
-Copy this directory into your agent's skills folder (for example, `~/.claude/skills/weather-forecaster` or `~/.cursor/skills/weather-forecaster`). The agent loads `SKILL.md` when weather comes up and reads the referenced templates and specs as needed.
+### Claude app (claude.ai and desktop)
+
+1. Download `weather-forecaster.skill` from the [Releases](../../releases) page.
+2. In Claude, go to **Customize > Skills** and upload the file.
+3. Ask Claude, "What's the weather?"
+
+On Team and Enterprise plans, you can also share the skill with colleagues or publish it to your organization's skill library. See [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
+
+### Claude Code
+
+Copy the `weather-forecaster` skill folder into your personal skills folder (`~/.claude/skills/`), or into a project's `.claude/skills/` folder to share it with everyone who clones that repo.
+
+> **Note:** The widgets are designed for the Claude app, where they render inline through Claude's visual tool. In Claude Code or through the API, the skill falls back to compact text versions of the same information.
+
+## Skill structure
+
+```
+weather-forecaster/
+├── SKILL.md                      Core instructions: persona, truthfulness, routing, answer format
+├── references/
+│   ├── data-sources.md           NWS/NOAA endpoints, international agencies, freshness checks, holiday calendars
+│   ├── icons.md                  Condition icons and color families
+│   ├── hourly-widget.md          Hourly widget spec and alert banners
+│   ├── day-card.md               Day card spec
+│   ├── weekend-widget.md         Weekend widget spec
+│   ├── long-weekend-widget.md    Long-weekend widget spec
+│   ├── week-widget.md            Work-week and 7-day widget spec
+│   ├── season-card.md            Season card spec (30-year normals)
+│   └── sample-data.md            Rules for clearly marked demo data
+└── assets/
+    ├── hourly-widget-template.html
+    ├── day-card-template.html
+    ├── weekend-widget-template.html
+    ├── long-weekend-widget-template.html
+    ├── week-widget-template.html
+    └── season-card-template.html
+```
+
+## Data sources
+
+- **Forecasts, observations, and alerts:** National Weather Service ([weather.gov](https://www.weather.gov), api.weather.gov)
+- **Severe weather, hurricanes, and outlooks:** NOAA's Storm Prediction Center, National Hurricane Center, Weather Prediction Center, and Climate Prediction Center
+- **Climate normals and records:** NWS office climate pages, NWS NOWData, and NCEI U.S. Climate Normals (1991–2020)
+- **Outside the US:** each country's official national meteorological service, and the WMO World Weather Information Service
+
+## Limitations
+
+- Forecast pages fetched through web tools are sometimes served from a stale cache. The skill checks timestamps and shows "No data" rather than using old readings.
+- Radar and satellite images can't be embedded in the chat, so the skill links to them instead.
+- Free official coverage outside the US varies by country, so "I don't know" comes up more often there.
+- This skill is not a substitute for official warnings. Always follow guidance from your local weather service and emergency officials.
+
+## Contributing
+
+Issues and pull requests are welcome. Please keep contributions in line with the skill's principles: official sources only, no invented data, and fixed templates for every widget.
+
+## Changelog
+
+### 0.0.1 (2026-09-26)
+
+First public version: day card, hourly, weekend, long-weekend, work-week, and 7-day widgets; season card for dates beyond the forecast range; holiday detection; alert banners (warnings, watches, advisories); color-coded condition icons; weather enthusiast charts; and clearly marked sample data for demos.
 
 ## License
 

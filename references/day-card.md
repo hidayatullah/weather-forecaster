@@ -2,13 +2,13 @@
 
 The day card gives the overall picture of the day in one card: current conditions, humidity, dew point, and wind, then the forecast for the next two periods (such as "This afternoon" and "Tonight"). It must look the same every time. Build it only from `assets/day-card-template.html` and the exact snippets below. Fill in the data; don't change the layout, styling, class names, colors, icons, or wording patterns, and don't add or remove elements beyond what these rules allow. Every number must come from data retrieved in the current conversation.
 
-The design was approved from a live Round Rock, TX example.
+The design was approved from a live example.
 
 ## How to build it
 
 1. Read `assets/day-card-template.html`.
 2. Replace every `{{PLACEHOLDER}}` using the rules below.
-3. Render the result with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `round_rock_day_card`), passing the filled-in template exactly as it is.
+3. Render the result with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `city_day_card`), passing the filled-in template exactly as it is.
 
 ## Data sources
 
@@ -19,7 +19,7 @@ The design was approved from a live Round Rock, TX example.
 
 | Placeholder | Fill with |
 |---|---|
-| `{{SR_SUMMARY}}` | "Current weather and today's forecast for Round Rock, TX, on Saturday, September 26, 2026, from National Weather Service data." Add ", with an active hurricane watch" (or similar) when a banner is shown. |
+| `{{SR_SUMMARY}}` | "Current weather and today's forecast for [City], [ST], on Saturday, September 26, 2026, from National Weather Service data." Add ", with an active hurricane watch" (or similar) when a banner is shown. |
 | `{{BANNER}}` | The same banner snippets as the hourly widget (see `hourly-widget.md`, "Banner snippets"): red for warnings, amber for watches, silver for advisories. Empty string if there are no alerts. The banner sits above the card. |
 | `{{LOCATION}}` | "City, ST" for US places. Never the full state name. |
 | `{{CORNER}}` | Short weekday and observation time with time zone, e.g. "Sat, 2:35 PM CDT". If there's no current reading: short weekday and "forecast only", e.g. "Sat, forecast only". |
@@ -28,7 +28,7 @@ The design was approved from a live Round Rock, TX example.
 | `{{DEWPOINT}}` | e.g. "66°", or "--" if not reported. |
 | `{{WIND}}` | One of the wind snippets below, for the observed wind. |
 | `{{PERIOD_1}}`, `{{PERIOD_2}}` | Period snippets for the next two NWS forecast periods. |
-| `{{CAPTION}}` | e.g. "Now: KEDC observation. Forecast: NWS Austin/San Antonio, issued 1:24 PM CDT." If there's no current reading: "Forecast: NWS Austin/San Antonio, issued 1:24 PM CDT." |
+| `{{CAPTION}}` | e.g. "Now: [station] observation. Forecast: NWS [office], issued 1:24 PM CDT." If there's no current reading: "Forecast: NWS [office], issued 1:24 PM CDT." |
 | `{{SOURCE_URL}}` | The weather.gov point forecast page for the location. |
 
 ## Current-conditions snippets

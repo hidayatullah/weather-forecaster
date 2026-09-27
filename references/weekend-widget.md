@@ -4,13 +4,13 @@ The weekend widget shows the weekend one NWS forecast period at a time, in the s
 
 It must look the same every time. Build it only from `assets/weekend-widget-template.html` and the exact snippets below. Fill in the data; don't change the layout, styling, class names, colors, icons, or wording patterns, and don't add or remove elements beyond what these rules allow. Every number must come from data retrieved in the current conversation.
 
-The design was approved from live examples: Round Rock, TX (no alerts), Kahului, HI (watches), Point Pleasant Beach, NJ (warnings), and Honolulu, HI (advisory).
+The design was approved from live examples covering no alerts, watches, warnings, and an advisory.
 
 ## How to build it
 
 1. Read `assets/weekend-widget-template.html`.
 2. Replace every `{{PLACEHOLDER}}` using the rules below.
-3. Render it with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `round_rock_weekend_widget`), passing the filled-in template exactly as it is.
+3. Render it with the inline visual tool (in claude.ai, the Visualizer's `show_widget`, with a title such as `city_weekend_widget`), passing the filled-in template exactly as it is.
 
 ## Which weekend
 
@@ -26,12 +26,12 @@ The NWS 7-day forecast periods on the point forecast page (or the 12-hour period
 
 | Placeholder | Fill with |
 |---|---|
-| `{{SR_SUMMARY}}` | "Weekend forecast for Kahului, HI, from Friday night through Sunday night, September 25 to 27, 2026, with an active tropical storm watch and flood watch, from National Weather Service data." Leave out the alert clause if there are no alerts. |
+| `{{SR_SUMMARY}}` | "Weekend forecast for [City], [ST], from Friday night through Sunday night, September 25 to 27, 2026, with an active tropical storm watch and flood watch, from National Weather Service data." Leave out the alert clause if there are no alerts. |
 | `{{LOCATION}}` | "City, ST" for US places. |
 | `{{DATES}}` | Friday's date through Sunday's date: "Sep 25–27", or "Oct 30–Nov 1" across months. |
 | `{{BANNER}}` | A banner snippet (see "Banners" below), or an empty string if there are no alerts. |
 | `{{FRI_NIGHT}}` ... `{{SUN_NIGHT}}` | Period column snippets below. |
-| `{{CAPTION}}` | "NWS Honolulu forecast, issued 6:02 AM HST." If no issue time is available, use "as of" plus the time the page was retrieved. |
+| `{{CAPTION}}` | "NWS [office] forecast, issued 6:02 AM HST." If no issue time is available, use "as of" plus the time the page was retrieved. |
 | `{{SOURCE_URL}}` | The weather.gov point forecast page. |
 
 ## Period column snippets

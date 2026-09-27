@@ -8,18 +8,17 @@ Colors group conditions by what they're made of or what they do. They are mid-to
 
 | Family | Color | Used for |
 |---|---|---|
-| Sun and light | `#EF9F27` | Sunny, clear by day, sunrise and sunset |
+| Sun and light | `#EF9F27` | Sunny, clear by day, sunrise and sunset, and optical effects like rainbows and halos (explanations only) |
 | Night | `#7F77DD` | Clear or mostly clear at night |
 | Clouds, fog, and wind | `#888780` | Clouds, mist, fog, haze, calm, breezy, windy, gusty |
 | Rain and water | `#378ADD` | Drizzle, rain, showers, humid, dew, flooding |
 | Snow, ice, and cold | `#1D9E75` | Snow, sleet, hail, freezing rain or fog, frost, ice, cold |
-| Possible thunderstorms | `#7F77DD` | Any *chance* or *possibility* of thunderstorms ("t-storm possible", "slight chance", "chance") |
+| Possible thunderstorms | `#D4537E` | Any *chance* or *possibility* of thunderstorms ("t-storm possible", "slight chance", "chance") |
 | Storms | `#E24B4A` | Thunderstorms likely or occurring, severe storms, tornadoes, gales, tropical storms, hurricanes |
 | Heat and dryness | `#D85A30` | Hot, heat wave, dry |
 | Smoke, dust, and ash | `#BA7517` | Smoke, dust, blowing dust, sandstorms, volcanic ash |
-| Optical effects | `#D4537E` | Rainbows, halos, sun dogs, and similar (explanations only) |
 
-Storm red matches the warning banner, so it's saved for thunderstorms that are likely or occurring and for dangerous weather. A mere chance of a thunderstorm uses the calmer purple.
+Storm red matches the warning banner, so it's saved for thunderstorms that are likely or occurring and for dangerous weather. A mere chance of a thunderstorm uses pink, so it can't be confused with a warning or with night (purple).
 
 Colors never carry meaning on their own. Every icon keeps its text label.
 

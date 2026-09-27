@@ -4,7 +4,7 @@ The long-weekend widget is the weekend widget stretched to cover every day off, 
 
 It must look the same every time. Build it only from `assets/long-weekend-widget-template.html` and the exact snippets below. Fill in the data; don't change the layout, styling, class names, colors, icons, or wording patterns, and don't add or remove elements beyond what these rules allow. Every number must come from data retrieved in the current conversation, except in an explicitly requested demo (see `sample-data.md`).
 
-The design was approved from live Round Rock, TX, Point Pleasant Beach, NJ, and Kahului, HI examples (three-day weekends) and a sample four-day weekend.
+The design was approved from live three-day-weekend examples (no alerts, watches, and warnings) and a sample four-day weekend.
 
 ## Which periods
 
@@ -18,21 +18,21 @@ Start with the night before the first day off, and end with the night of the las
 
 Periods that have already passed stay as muted "Passed" columns (snippet in `weekend-widget.md`). The current period gets `now` in its class.
 
-**When not to show the widget:** if the long weekend is beyond the NWS forecast range, so that most columns would be "No data", don't show the widget at all. Answer in text with the holiday line, the Climate Prediction Center outlooks that cover the dates, and typical conditions for that time of year (see SKILL.md, "Matching the time horizon"). Offer to check again once the forecast reaches the weekend. If only the last one or two periods are beyond range, show the widget and use the "No data" snippet for those.
+**When not to show the widget:** if the long weekend is beyond the NWS forecast range, so that most columns would be "No data", don't show this widget. Show the season card instead (see `season-card.md`), with the long-weekend badge, and mention any Climate Prediction Center outlook that covers the dates in the reply text. If only the last one or two periods are beyond range, show this widget and use the "No data" snippet for those.
 
 ## Placeholders
 
 | Placeholder | Fill with |
 |---|---|
 | `{{COLUMNS_PER_ROW}}` | `7` for seven columns, `5` for nine. |
-| `{{SR_SUMMARY}}` | "Long weekend forecast for Round Rock, TX, from Friday night through Monday night, September 25 to 28, 2026, with Monday off for Labor Day, from National Weather Service data." Start with "Sample data, not a real forecast:" in a demo. Add the alert clause when a banner is shown. |
+| `{{SR_SUMMARY}}` | "Long weekend forecast for [City], [ST], from Friday night through Monday night, September 25 to 28, 2026, with Monday off for Labor Day, from National Weather Service data." Start with "Sample data, not a real forecast:" in a demo. Add the alert clause when a banner is shown. |
 | `{{SAMPLE_RIBBON}}` | Empty for real data. The ribbon snippet from `sample-data.md` in a demo. |
 | `{{HEADER_PADDING}}` | Empty for real data. `;padding-right:70px` in a demo, so the ribbon doesn't cover the badge. |
 | `{{LOCATION}}` | "City, ST" for US places. |
 | `{{BADGE_TEXT}}` | "Long weekend · Sep 25–28", from the first night's date to the last day off. If a holiday caused it, it may name the holiday: "Labor Day weekend · Sep 4–7". |
 | `{{BANNER}}` | A banner snippet from `hourly-widget.md` ("Banner snippets"): red for warnings, amber for watches, silver for advisories. Empty if there are no alerts. |
 | `{{PERIOD_COLUMNS}}` | The period column snippets, in order. |
-| `{{CAPTION}}` | "NWS Austin/San Antonio forecast, issued 1:24 PM CDT. <a href=\"{{SOURCE_URL}}\">View on weather.gov</a>" for real data, or "Sample data for illustration only. Not a forecast." in a demo. |
+| `{{CAPTION}}` | "NWS [office] forecast, issued 1:24 PM CDT. <a href=\"{{SOURCE_URL}}\">View on weather.gov</a>" for real data, or "Sample data for illustration only. Not a forecast." in a demo. |
 
 ## Period column snippets
 
